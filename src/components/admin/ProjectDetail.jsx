@@ -43,7 +43,7 @@ const ProjectDetail = () => {
     }
   };
 
-  const cloudBaseUrl = "https://res.cloudinary.com/dbbg33z9v/image/upload/";
+  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`
 
   const imageUrl = project?.image
     ? cloudBaseUrl + project.image

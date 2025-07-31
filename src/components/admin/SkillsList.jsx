@@ -37,7 +37,7 @@ const SkillsList = ({ reload, setReload }) => {
     }
   };
 
-  const cloudBaseUrl = "https://res.cloudinary.com/dbbg33z9v/image/upload/";
+  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`
 
   return (
     <div className="px-4 sm:px-8">

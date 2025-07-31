@@ -21,7 +21,7 @@ const HardSkills = () => {
 
   if (loading) return <HardSkillsSkeleton />
 
-  const cloudBaseUrl = "https://res.cloudinary.com/dbbg33z9v/image/upload/";
+  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`;
   return (
     <div className="grid grid-cols-3 sm:grid-cols-4 max-[440px]:grid-cols-2 gap-6 gap-y-6">
       {!loading &&
