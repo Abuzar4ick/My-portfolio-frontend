@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import useApi from '../../hooks/useApi'
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5"
@@ -28,6 +28,11 @@ const Register = () => {
       navigate('/admin/dashboard')
     }
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) navigate('/admin/dashboard', { replace: true })
+  }, [navigate])
 
   return (
     <div className="min-h-screen flex items-center justify-center transition-colors">

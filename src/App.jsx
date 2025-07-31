@@ -17,6 +17,8 @@ import Skills from './pages/admin/Skills'
 import SoftSkills from './pages/admin/SoftSkills'
 import Education from "./pages/admin/Education"
 import ProjectDetail from "./components/admin/ProjectDetail"
+// Private route
+import PrivateRoute from './components/PrivateRoute'
 
 const App = () => {
   const routes = createBrowserRouter([
@@ -36,7 +38,9 @@ const App = () => {
     },
     {
       path: '/admin',
-      element: <AdminLayout />,
+      element: <PrivateRoute>
+        <AdminLayout />
+      </PrivateRoute>,
       children: [
         {
           path: 'dashboard',
