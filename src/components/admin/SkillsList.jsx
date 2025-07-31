@@ -37,7 +37,7 @@ const SkillsList = ({ reload, setReload }) => {
     }
   };
 
-  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`
+  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
 
   return (
     <div className="px-4 sm:px-8">

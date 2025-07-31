@@ -27,7 +27,7 @@ const Portfolio = () => {
       </>
     );
 
-  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`
+  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
   return (
     <section className="px-4 sm:px-6 lg:px-8">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
@@ -38,7 +38,7 @@ const Portfolio = () => {
               : "https://via.placeholder.com/300x220?text=No+Image";
             return (
               <div
-                key={project.id}
+                key={project._id}
                 className="w-full max-w-[304px] h-[290px] mx-auto transform transition duration-300 hover:-translate-y-1 active:translate-y-[2px]"
               >
                 <NavLink to={`/projects/${project._id}/detail`}>

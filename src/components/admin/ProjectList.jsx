@@ -19,7 +19,7 @@ const ProjectList = ({ reload, setReload }) => {
     })()
   }, [reload])
 
-  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`
+  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
 
   return (
     <div className=" mt-10">

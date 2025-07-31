@@ -20,7 +20,7 @@ const ProfileInfo = ({ reload, setReload }) => {
     })();
   }, [reload]);
 
-  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`
+  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
 
   const imageUrl = profile?.image
     ? cloudBaseUrl + profile.image

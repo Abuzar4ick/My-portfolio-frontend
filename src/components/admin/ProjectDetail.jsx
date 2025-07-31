@@ -43,7 +43,7 @@ const ProjectDetail = () => {
     }
   };
 
-  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`
+  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
 
   const imageUrl = project?.image
     ? cloudBaseUrl + project.image

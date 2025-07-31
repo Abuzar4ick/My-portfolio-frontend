@@ -21,7 +21,7 @@ const HardSkills = () => {
 
   if (loading) return <HardSkillsSkeleton />
 
-  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`;
+  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
   return (
     <div className="grid grid-cols-3 sm:grid-cols-4 max-[440px]:grid-cols-2 gap-6 gap-y-6">
       {!loading &&

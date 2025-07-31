@@ -42,7 +42,7 @@ const Info = () => {
     fetchSocialNetworks()
   }, [])
 
-  const cloudBaseUrl = `${import.meta.env.CLOUDINARY_URL}`
+  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
   const imageUrl = info?.image ? cloudBaseUrl + info.image : ProfileImage
 
   if (loading || !info || !social) return <InfoSkeleton />
