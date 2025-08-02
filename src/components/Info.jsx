@@ -104,7 +104,7 @@ const Info = () => {
             href={`mailto:${social.email_link}`}
             target="_blank"
             rel="noreferrer"
-            className="w-[56px] h-[56px] bg-white dark:bg-[#171F26] dark:text-white flex items-center justify-center rounded-[8px]"
+            className="w-[68px] h-[56px] bg-white dark:bg-[#171F26] dark:text-white flex items-center justify-center rounded-[8px]"
           >
             <MdOutlineMail size={20} />
           </a>
@@ -112,7 +112,7 @@ const Info = () => {
             href={social.linkedin_link}
             target="_blank"
             rel="noreferrer"
-            className="w-[56px] h-[56px] bg-white dark:bg-[#171F26] dark:text-white flex items-center justify-center rounded-[8px]"
+            className="w-[68px] h-[56px] bg-white dark:bg-[#171F26] dark:text-white flex items-center justify-center rounded-[8px]"
           >
             <FiLinkedin size={20} />
           </a>

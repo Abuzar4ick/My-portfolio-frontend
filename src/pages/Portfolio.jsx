@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import useApi from "../hooks/useApi";
 import { useState, useEffect } from "react";
-import ProjectSkeleton from "../components/skeletons/ProjectCardSkeleton";
+import ProjectSkeleton from "../components/skeletons/ProjectListSkeleton";
 
 const Portfolio = () => {
   const { request, loading, error } = useApi();

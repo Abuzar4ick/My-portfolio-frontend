@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import useApi from '../../hooks/useApi'
 // icons
 import { IoIosSunny } from "react-icons/io"
 import { IoMdMoon } from "react-icons/io"
@@ -7,6 +8,7 @@ import { RiLogoutBoxLine } from "react-icons/ri"
 
 const Navbar = () => {
   const [theme, setTheme] = useState("light")
+  const { request, loading, error } = useApi()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -22,9 +24,16 @@ const Navbar = () => {
     document.documentElement.classList.toggle("dark", newTheme === "dark")
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem("token")
-    navigate("/admin/register")
+  const handleLogout = async () => {
+    const result = await request({
+      url: `${import.meta.env.VITE_API}/admin-logout`,
+      method: 'POST'
+    })
+
+    if (result?.success) {
+      localStorage.removeItem("token")
+      navigate("/admin/register")
+    }
   }
 
   return (

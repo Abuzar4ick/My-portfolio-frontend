@@ -8,7 +8,6 @@ const SectionToggle = () => {
 
   return (
     <div>
-      {/* Toggle buttons */}
       <div className="flex justify-between items-center w-full bg-white dark:bg-[#171F26] h-[76px] gap-[12px] rounded-[16px] p-[12px] shadow-sm">
         <button
           onClick={() => setActiveTab("portfolio")}
@@ -34,10 +33,13 @@ const SectionToggle = () => {
         </button>
       </div>
 
-      {/* Toggle content */}
       <div className="mt-6">
-        {activeTab === "portfolio" && <Portfolio />}
-        {activeTab === "about" && <About />}
+        <div hidden={activeTab !== "portfolio"}>
+          <Portfolio />
+        </div>
+        <div hidden={activeTab !== "about"}>
+          <About />
+        </div>
       </div>
     </div>
   )

@@ -1,9 +1,10 @@
 import Skeleton from "./Skeleton"
 
 const ProjectSkeleton = () => {
-  const skeletons = Array(3).fill(0)
+  const skeletons = Array(4).fill(0)
+
   return (
-    <>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 gap-y-8">
       {skeletons.map((_, index) => (
         <div className="flex flex-wrap justify-center gap-6" key={index}>
           <div
@@ -17,7 +18,7 @@ const ProjectSkeleton = () => {
         </div>
         </div>
       ))}
-    </>
+    </div>
   )
 }
 
