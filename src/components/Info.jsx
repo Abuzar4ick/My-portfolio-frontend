@@ -1,63 +1,76 @@
-import useApi from "../hooks/useApi"
-import { useEffect, useState } from "react"
+import useApi from "../hooks/useApi";
+import { useEffect, useState } from "react";
 // images
-import ProfileImage from "../assets/Profile-img.svg"
+import ProfileImage from "../assets/Profile-img.svg";
 // icons
-import { FaTelegram, FaGithub } from "react-icons/fa"
-import { GoDownload } from "react-icons/go"
-import { MdOutlineMail } from "react-icons/md"
-import { FiLinkedin } from "react-icons/fi"
+import { FaTelegram, FaGithub } from "react-icons/fa";
+import { GoDownload } from "react-icons/go";
+import { MdOutlineMail } from "react-icons/md";
+import { FiLinkedin } from "react-icons/fi";
+import { FaExpandArrowsAlt } from "react-icons/fa";
 // skeleton
-import InfoSkeleton from "../components/skeletons/InfoSkeleton"
+import InfoSkeleton from "../components/skeletons/InfoSkeleton";
+// components
+import Modal from "../components/Modal";
 
 const Info = () => {
-  const { request, loading, error } = useApi()
-  const [info, setInfo] = useState(null)
-  const [social, setSocial] = useState(null)
+  const { request, loading, error } = useApi();
+  const [info, setInfo] = useState(null);
+  const [social, setSocial] = useState(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await request({
         url: `${import.meta.env.VITE_API}/profile/info`,
         method: "GET",
-      })
+      });
 
       if (result?.success) {
-        setInfo(result.data)
+        setInfo(result.data);
       }
-    }
+    };
 
     const fetchSocialNetworks = async () => {
       const result = await request({
         url: `${import.meta.env.VITE_API}/social-networks`,
         method: "GET",
-      })
+      });
 
       if (result?.success) {
-        setSocial(result.data)
+        setSocial(result.data);
       }
-    }
+    };
 
-    fetchData()
-    fetchSocialNetworks()
-  }, [])
+    fetchData();
+    fetchSocialNetworks();
+  }, []);
 
-  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
-  const imageUrl = info?.image ? cloudBaseUrl + info.image : ProfileImage
+  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`;
+  const imageUrl = info?.image ? cloudBaseUrl + info.image : ProfileImage;
 
-  if (loading || !info || !social) return <InfoSkeleton />
-  if (error) return <p className="text-red-500">{error.message}</p>
+  if (loading || !info || !social) return <InfoSkeleton />;
+  if (error) return <p className="text-red-500">{error.message}</p>;
 
   return (
     <>
-      {/* Profile image & text */}
       <div className="flex gap-6 items-center sm:items-start text-left">
-        <div className="w-[110px] h-[110px] min-w-[110px] min-h-[110px] rounded-full border-4 border-[#FBD144] overflow-hidden flex items-center justify-center">
+        <div className="w-[110px] h-[110px] min-w-[110px] min-h-[110px] rounded-full border-4 border-[#FBD144] overflow-hidden flex items-center justify-center relative group cursor-pointer">
           <img
             className="w-full h-full object-cover"
             src={imageUrl}
             alt="Profile"
           />
+          <button
+            onClick={() => setOpen(true)}
+            className="absolute cursor-pointer inset-0 bg-[#0000008e] bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          >
+            <FaExpandArrowsAlt
+              aria-label="Expand"
+              className="text-white"
+              size={24}
+            />
+          </button>
         </div>
         <div className="text-xs sm:text-base text-base/10">
           <h1 className="text-2xl sm:text-3xl font-semibold">
@@ -118,8 +131,17 @@ const Info = () => {
           </a>
         </div>
       </div>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <div className="sm:w-125 sm:h-125 w-90 h-90">
+          <img
+            src={imageUrl}
+            alt={info.full_name}
+            className="w-full h-full rounded-lg"
+          />
+        </div>
+      </Modal>
     </>
-  )
-}
+  );
+};
 
-export default Info
+export default Info;

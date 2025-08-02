@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import useApi from "../../hooks/useApi";
-import ProfileInfoSkeleton from '../../components/skeletons/ProfileInfoSkeleton'
+import ProfileInfoSkeleton from "../../components/skeletons/ProfileInfoSkeleton";
+import Modal from "../../components/Modal";
+import { FaExpandArrowsAlt } from "react-icons/fa";
 
 const ProfileInfo = ({ reload, setReload }) => {
   const { request, loading, error } = useApi();
 
   const [profile, setProfile] = useState();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -20,51 +23,71 @@ const ProfileInfo = ({ reload, setReload }) => {
     })();
   }, [reload]);
 
-  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
+  const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`;
 
   const imageUrl = profile?.image
     ? cloudBaseUrl + profile.image
     : "https://via.placeholder.com/300x220?text=No+Image";
 
-  if (loading) return <ProfileInfoSkeleton />
-  
+  if (loading) return <ProfileInfoSkeleton />;
+
   return (
-    <div className="mt-6">
-      {/* Profile image & text */}
-      <div className="flex gap-6 items-center sm:items-start text-left">
-        <div className="w-[110px] h-[110px] min-w-[110px] min-h-[110px] rounded-full border-4 border-[#FBD144] overflow-hidden flex items-center justify-center">
-          <img
-            className="w-full h-full object-cover"
-            src={imageUrl}
-            alt="Profile"
-          />
+    <>
+      <div className="mt-6">
+        <div className="flex gap-6 items-center sm:items-start text-left">
+          <div className="w-[110px] h-[110px] min-w-[110px] min-h-[110px] rounded-full border-4 border-[#FBD144] overflow-hidden flex items-center justify-center relative group cursor-pointer">
+            <img
+              className="w-full h-full object-cover"
+              src={imageUrl}
+              alt="Profile"
+            />
+            <button
+              onClick={() => setOpen(true)}
+              className="absolute cursor-pointer inset-0 bg-[#0000008e] bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            >
+              <FaExpandArrowsAlt
+                aria-label="Expand"
+                className="text-white"
+                size={24}
+              />
+            </button>
+          </div>
+          <div className="text-xs sm:text-base text-base/10">
+            <h1 className="text-2xl sm:text-3xl font-semibold">
+              {profile?.full_name}
+            </h1>
+            <p className="text-[#555555] dark:text-white text-xs sm:text-base">
+              {profile?.role}
+            </p>
+          </div>
         </div>
-        <div className="text-xs sm:text-base text-base/10">
-          <h1 className="text-2xl sm:text-3xl font-semibold">
-            {profile?.full_name}
-          </h1>
-          <p className="text-[#555555] dark:text-white text-xs sm:text-base">
-            {profile?.role}
+
+        {/* Stats */}
+        <div className="flex justify-around gap-6 text-center mt-6">
+          <p className="flex flex-col items-center">
+            <span className="text-xl">{profile?.experience}+</span>
+            Years of Experience
+          </p>
+          <p className="flex flex-col items-center">
+            <span className="text-xl">{profile?.satisfied_clients}+</span>
+            Satisfied Clients
+          </p>
+          <p className="flex flex-col items-center">
+            <span className="text-xl">{profile?.completed_projects}+</span>
+            Completed Projects
           </p>
         </div>
       </div>
-
-      {/* Stats */}
-      <div className="flex justify-around gap-6 text-center mt-6">
-        <p className="flex flex-col items-center">
-          <span className="text-xl">{profile?.experience}+</span>
-          Years of Experience
-        </p>
-        <p className="flex flex-col items-center">
-          <span className="text-xl">{profile?.satisfied_clients}+</span>
-          Satisfied Clients
-        </p>
-        <p className="flex flex-col items-center">
-          <span className="text-xl">{profile?.completed_projects}+</span>
-          Completed Projects
-        </p>
-      </div>
-    </div>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <div className="sm:w-125 sm:h-125 w-90 h-90">
+          <img
+            src={imageUrl}
+            alt={profile?.full_name}
+            className="w-full h-full rounded-lg"
+          />
+        </div>
+      </Modal>
+    </>
   );
 };
 
