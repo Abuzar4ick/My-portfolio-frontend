@@ -23,14 +23,13 @@ const Portfolio = () => {
     return (
       <>
         <ProjectSkeleton />
-        <ProjectSkeleton />
       </>
     );
 
   const cloudBaseUrl = `${import.meta.env.VITE_CLOUDINARY_URL}`
   return (
     <section className="px-4 sm:px-6 lg:px-8">
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 gap-y-0">
         {!loading &&
           projects.map((project) => {
             const imageUrl = project.image

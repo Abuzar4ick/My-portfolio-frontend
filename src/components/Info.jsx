@@ -11,7 +11,7 @@ import { FaExpandArrowsAlt } from "react-icons/fa";
 // skeleton
 import InfoSkeleton from "../components/skeletons/InfoSkeleton";
 // components
-import Modal from "../components/Modal";
+import Modal from './Modal'
 
 const Info = () => {
   const { request, loading, error } = useApi();
@@ -61,10 +61,7 @@ const Info = () => {
             src={imageUrl}
             alt="Profile"
           />
-          <button
-            onClick={() => setOpen(true)}
-            className="absolute cursor-pointer inset-0 bg-[#0000008e] bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-          >
+          <button onClick={() => setOpen(true)} className="absolute cursor-pointer inset-0 bg-[#0000008e] bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             <FaExpandArrowsAlt
               aria-label="Expand"
               className="text-white"
@@ -133,11 +130,7 @@ const Info = () => {
       </div>
       <Modal open={open} onClose={() => setOpen(false)}>
         <div className="sm:w-125 sm:h-125 w-90 h-90">
-          <img
-            src={imageUrl}
-            alt={info.full_name}
-            className="w-full h-full rounded-lg"
-          />
+          <img src={imageUrl} alt={info.full_name} className="w-full h-full rounded-lg" />
         </div>
       </Modal>
     </>

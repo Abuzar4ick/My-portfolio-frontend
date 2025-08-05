@@ -1,7 +1,7 @@
 import Skeleton from "./Skeleton"
 
 const ProjectSkeleton = () => {
-  const skeletons = Array(4).fill(0)
+  const skeletons = Array(6).fill(0)
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 gap-y-8">

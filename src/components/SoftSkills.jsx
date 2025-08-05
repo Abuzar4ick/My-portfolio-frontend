@@ -24,7 +24,7 @@ const SoftSkills = () => {
       {!loading &&
         !error &&
         skills.map((skill) => (
-            <p className='text-[24px] font-semibold'>{skill.title}</p>
+            <p key={skill._id} className='text-[24px] font-semibold'>{skill.title}</p>
         ))}
     </div>
   )
