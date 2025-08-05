@@ -94,7 +94,7 @@ const SocialMedia = () => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center h-screen px-4 space-y-10">
+    <section className="flex flex-col items-center justify-center min-h-screen px-4 gap-y-10">
       <button
         onClick={() => navigate(-1)}
         className="w-[56px] h-[56px] cursor-pointer bg-[#FBD144] hover:bg-[#e5bc29] active:bg-[#cfae1e] flex items-center justify-center rounded-full drop-shadow-xl text-[#171F26] transition"

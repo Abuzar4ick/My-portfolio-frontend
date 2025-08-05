@@ -111,7 +111,7 @@ const ProfileInfo = () => {
     <section className="relative flex flex-col items-center justify-center min-h-screen px-4 space-y-10">
       <button
         onClick={() => navigate(-1)}
-        className="top-6 left-4 w-[48px] h-[48px] cursor-pointer bg-[#FBD144] hover:bg-[#e5bc29] active:bg-[#cfae1e] flex items-center justify-center rounded-full drop-shadow-xl text-[#171F26] transition"
+        className="top-6 left-4 w-[56px] h-[56px] cursor-pointer bg-[#FBD144] hover:bg-[#e5bc29] active:bg-[#cfae1e] flex items-center justify-center rounded-full drop-shadow-xl text-[#171F26] transition"
       >
         <IoMdArrowRoundBack size={20} />
       </button>
